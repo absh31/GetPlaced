@@ -2,6 +2,11 @@
     width: 100%;
 }
 
+body {
+    background: #FFFFFF;
+    font-family: Product Sans;
+}
+
 .box{
     position: relative;
     display: inline-block;
@@ -127,6 +132,15 @@
     background-color:#FFF ; 
     color:#2a2868;
     border-radius: 25px;
+}
+
+.fa{
+    display: inline;
+}
+
+footer{
+    background-color: #2a2868;
+    color: white;
 }
 
 @media only screen and (max-width:500px) {
