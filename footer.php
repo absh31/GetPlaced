@@ -19,8 +19,8 @@
             Chandkheda,<br>
             Ahmedabad - 382424
           </p>
-          <p style="font-size:16pt"><i class="fa fa-phone me-3"></i>+91-1234567890</p>
-          <p style="font-size:16pt"><i class="fa fa-envelope me-3"></i>query@getplaced.com</p>
+          <p style="font-size:16pt"><i class="fa fa-phone me-3"></i><a class="text-reset" href="tel:1234567890">+91-1234567890</a></p>
+          <p style="font-size:16pt"><i class="fa fa-envelope me-3"></i><a class="text-reset" href="mailto:query@getplaced.com">query@getplaced.com</a></p>
           
         </div>
         <!-- Grid column -->
@@ -40,9 +40,9 @@
           <h6 class="text-uppercase fw-bold mb-4" style="font-size:16pt">
             Login Links
           </h6>
-          <p style="font-size:16pt"><a class="text-reset" style="text-decoration:none;" href="#">Employer Login</a></p>
-          <p style="font-size:16pt"><a class="text-reset" style="text-decoration:none;" href="#">Student Login</a></p>
-          <p style="font-size:16pt"><a class="text-reset" style="text-decoration:none;" href="#">University Login</a></p>
+          <p style="font-size:16pt"><a class="text-reset" style="text-decoration:none;" href="./signin.php">Company Login</a></p>
+          <p style="font-size:16pt"><a class="text-reset" style="text-decoration:none;" href="./signin.php">Student Login</a></p>
+          <p style="font-size:16pt"><a class="text-reset" style="text-decoration:none;" href="./signin.php">College Login</a></p>
           
         </div>
         <!-- Grid column -->
@@ -54,22 +54,10 @@
 
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05); color:white">
-    © 2021 Copyright: FRIENDS
+    Last Updated: <?php echo date('d/m/Y'); ?> | © Copyright 2021 <i>Friends & Co</i>.
   </div>
   
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
  
- <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>

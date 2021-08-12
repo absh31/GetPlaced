@@ -1,3 +1,66 @@
+<?php include('./connection.php'); 
+
+if(isset($_POST['submit']))
+    {
+        //echo "hi";
+        $com_name = $_POST["com_name"];
+        $uname = $_POST["uname"];
+        $pass = $_POST["pass"];
+        $confirmpass = $_POST['confirmpass'];
+        $email = $_POST['email'];
+        $web = $_POST["web"];
+        $contact = $_POST["contact"];
+        $city = $_POST["city"];
+        $desc = $_POST["desc"];
+        if($pass!=$confirmpass)
+        {
+            echo "<script>alert('Please Enter Same Password!')</script>";
+            unset($_POST['submit']);
+            //exit();
+        }
+        else
+        {
+            $query = $conn->prepare("SELECT seeker_uname FROM seeker_tbl WHERE `seeker_uname`='$uname'");
+            $query->execute();
+            if($query->rowCount()==1) 
+            {
+                echo "<script>alert('Username not available. Please try another one.')</script>";
+                unset($_POST['submit']);
+                exit();
+            }
+            $query = $conn->prepare("SELECT college_uname FROM college_tbl WHERE `college_uname`='$uname'");
+            $query->execute();
+            if($query->rowCount()==1)
+            {
+                echo "<script>alert('Username not available. Please try another one.')</script>";
+                unset($_POST['submit']);
+                exit();
+            }
+            $query = $conn->prepare("SELECT company_uname FROM company_tbl WHERE `company_uname`='$uname'");
+            $query->execute();
+            if($query->rowCount()==1)
+            {
+                echo "<script>alert('Username not available. Please try another one.')</script>";
+                unset($_POST['submit']);
+                exit();
+            }
+            else
+            {
+                $sql = $conn->prepare("INSERT INTO `company_tbl`( `company_uname`, `company_pass`, `company_name`,`company_contact`,`company_web`,`company_mail`, `company_about`, `company_location` ) VALUES ('$uname' , '$pass' , '$com_name' , '$contact' , '$web' , '$email' , '$desc' , '$city' )");
+                if($sql->execute())
+                {
+                    echo "<script>alert('Record Sucessfully Inserted!')</script>";
+                    echo "<script>window.open('./signin.php','_self')</script>";
+                }
+                else
+                {
+                    echo "<script>alert('Record Insert Failed. Please try again later.')</script>";
+                }
+            }
+        }
+    }
+?>
+<link rel="icon" href="./GP_ICON.png">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +68,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style1.css?v=<?php echo time(); ?>">
     
-    <title>Login</title>
+    <title>Sign Up | GetPlaced</title>
 </head>
 <body>
     <div class="container">
@@ -25,47 +88,47 @@
             </div>
             <br/>
             <br/>
-            <form class="row g-3">
+            <form class="row g-3" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
                 <div class="col-md-6">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control border border-dark" id="inputName" placeholder="Name">
+                    <input type="text" name="com_name" class="form-control border border-dark" id="inputName" placeholder="Name">
                 </div>
                 <div class="col-md-6">
                     <label for="username" class="form-label" style="font-family:Product Sans">Username</label>
-                    <input type="text" class="form-control border border-dark" id="inputusername" placeholder="Username">
+                    <input type="text" name="uname" class="form-control border border-dark" id="inputusername" placeholder="Username">
                 </div>
                 <div class="col-md-6">
                     <label for="password" class="form-label" style="font-family:Product Sans">Password</label>
-                    <input type="password" class="form-control border border-dark" id="password" placeholder="Password">
+                    <input type="password" name="pass" class="form-control border border-dark" id="password" placeholder="Password">
                 </div>
                 <div class="col-md-6">
                     <label for="password" class="form-label" style="font-family:Product Sans">Confirm Password</label>
-                    <input type="password" class="form-control border border-dark" id="password" placeholder="Confirm Password">
+                    <input type="password" name="confirmpass" class="form-control border border-dark" id="password" placeholder="Confirm Password">
                 </div>
                 <div class="col-md-6">
                     <label for="email" class="form-label" style="font-family:Product Sans">Email</label>
-                    <input type="email" class="form-control border border-dark" id="email" placeholder="Email">
+                    <input type="email" name="email" class="form-control border border-dark" id="email" placeholder="Email">
                 </div>
                 <div class="col-md-6">
                     <label for="website" class="form-label" style="font-family:Product Sans">Website</label>
-                    <input type="text" class="form-control border border-dark" id="Website" placeholder="Website">
+                    <input type="text" name="web" class="form-control border border-dark" id="Website" placeholder="Website">
                 </div>
                 <div class="col-md-6">
                     <label for="contact" class="form-label" style="font-family:Product Sans">Contact</label>
-                    <input type="tel" class="form-control border border-dark" id="contact" aria-describedby="emailHelp" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Contact">
+                    <input type="tel" name="contact" class="form-control border border-dark" id="contact" aria-describedby="emailHelp" placeholder="Contact">
                 </div>
                 <div class="col-md-6">
                     <label for="website" class="form-label" style="font-family:Product Sans">City</label>
-                    <input type="text" class="form-control border border-dark" id="City" placeholder="City">
+                    <input type="text" name="city" class="form-control border border-dark" id="City" placeholder="City">
                 </div>
                 <div class="col-12">
                     <label for="Description" class="form-label">Description</label>
-                    <textarea row="5" class="form-control" id="description" placeholder="Description"></textarea>
+                    <textarea row="5" name="desc" class="form-control" id="description" placeholder="Description"></textarea>
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto">
                     <br>
-                    <button class="btn btn-primary" type="button" style="background-color:#28a745;border:solid 2px green">Sign Up</button>
-                    <a href="#" class="text-center" style="text-decoration:none">Already Have an Account? Sign In</a>
+                    <button class="btn btn-primary" name="submit" type="submit" style="background-color:#28a745;border:solid 2px green">Sign Up</button>
+                    <a href="./signin.php" class="text-center" style="text-decoration:none">Already Have an Account? Sign In</a>
                 </div>
             </form>
 

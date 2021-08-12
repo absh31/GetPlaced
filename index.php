@@ -1,4 +1,4 @@
-<?php include "header.php" ?>
+ <?php include "./header.php";?>
 
 <div class="container">
        <div class="row">
@@ -17,7 +17,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="about">
+            <div class="about" id="about">
                 <h2>WHAT ARE WE</h2>
                 <br>
                 <h4>We provide a platform for the students and job seekers</h4>
@@ -39,7 +39,7 @@
             <div class="col-lg-3 mb-4 sm-6">
                 <div class="card border border-dark">
                     <div class="card-body">
-                        <h5 class="card-title">9600+</h5>
+                        <h5 class="card-title">90+</h5>
                         <p class="card-text">
                             Our Users
                         </p>
@@ -49,9 +49,9 @@
             <div class="col-lg-3 mb-4 sm-6">
                 <div class="card border border-dark">
                     <div class="card-body">
-                        <h5 class="card-title">50+</h5>
+                        <h5 class="card-title">3+</h5>
                         <p class="card-text">
-                           Registered Users
+                           Registered Institutions
                         </p>      
                     </div>
                 </div>
@@ -59,7 +59,7 @@
             <div class="col-lg-3 mb-4 sm-6">
                 <div class="card border border-dark">
                     <div class="card-body">
-                        <h5 class="card-title">300+</h5>
+                        <h5 class="card-title">10+</h5>
                         <p class="card-text">
                            Registered Companies
                         </p>      
@@ -69,7 +69,7 @@
             <div class="col-lg-3 mb-4 sm-6">
                 <div class="card border border-dark">
                     <div class="card-body">
-                        <h5 class="card-title">2500+</h5>
+                        <h5 class="card-title">50+</h5>
                         <p class="card-text">
                            Placed Users
                         </p>      
@@ -79,10 +79,16 @@
         </div>
     </div>
 
+    <div id="stats" class="chart" style="display: flex;">
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+    
+</div>
     <div class="container" style="font-family:Product Sans;font-size:14pt">
         <div class="row">
         <div class="facts">
-            <h2>CONTACT US</h2>
+            <h2 id="contact">CONTACT US</h2>
         </div>
         <br>
         <div class="col-lg-6 mb-4 sm-6">
@@ -111,5 +117,78 @@
         
         </div>
     </div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['VGEC', 'Hours per Day'],
+          ['NIRMA',     11],
+          ['DAIICT',      2],
+          ['L.D',  2],
+          ['DDIT', 2],
+          ['SILVER OAK',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['facebook', 'Hours per Day'],
+          ['amazon',     11],
+          ['flipkart',      2],
+          ['apple',  2],
+          ['google', 2],
+          ['netflix',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['javascript', 'Hours per Day'],
+          ['PHP',     11],
+          ['REACTJS',      2],
+          ['NODEJS',  2],
+          ['swift', 2],
+          ['C++',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
 
 <?php include "footer.php" ?>
